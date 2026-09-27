@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Запись на сдачу зачёта</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1a2942;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: transparent;
+        }
+
+        .column {
+            padding: 25px;
+            border: 1px solid #e0e4e8;
+            border-radius: 12px;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .column h2 {
+            font-size: 18px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        /* Стили полей ввода и подписей */
+        label {
+            font-size: 14px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+            color: #4a5568;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccd2d8;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, select:focus {
+            border-color: #3182ce;
+        }
+
+        /* Подсказки под полями */
+        .hint {
+            font-size: 11px;
+            color: #a0aec0;
+            margin-top: -10px;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .radio-group label, .checkbox-group label {
+            font-weight: 400;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 0;
+        }
+
+        #fullname:user-invalid,
+        #group:user-invalid,
+        #teacher:user-invalid {
+            border: 2px solid #e53e3e;
+            background-color: #fff5f5;
+        }
+
+        #fullname:user-valid,
+        #group:user-valid,
+        #teacher:user-valid {
+            border: 2px solid #38a169;
+            background-color: #f0fff4;
+        }
+
+        .submit-container {
+            grid-column: 1 / -1; 
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        button[type="submit"] {
+            background-color: #2b4c7e;
+            color: white;
+            padding: 14px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #1e365c;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Запись на сдачу зачёта</h1>
+
+    <!-- Форма, оборачивающая все поля -->
+    <form action="#" method="POST">
+        
+        <!-- ЛЕВАЯ КОЛОНКА -->
+        <div class="column">
+            <h2>Информация о студенте</h2>
+
+            <div>
+                <label for="fullname">ФИО студента:</label>
+                <!-- required, autofocus, maxlength=256, pattern -->
+                <input type="text" id="fullname" name="fullname" maxlength="256" 
+                       pattern="[А-ЯЁ][а-яё]+\s[А-ЯЁ][а-яё]+\s[А-ЯЁ][а-яё]+" 
+                       title="Введите три слова на кириллице: Фамилия Имя Отчество" 
+                       placeholder="Иванов Иван Иванович" 
+                       required autofocus>
+                <div class="hint">Введите три слова на кириллице: Фамилия Имя Отчество</div>
+            </div>
+
+            <div>
+                <label for="course">Курс:</label>
+                <!-- Ограничение от 1 до 6 -->
+                <input type="number" id="course" name="course" min="1" max="6" placeholder="1" title="Введите номер курса от 1 до 6">
+            </div>
+
+            <div>
+                <label>Факультет:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="faculty" value="it" checked> ИТ</label>
+                    <label><input type="radio" name="faculty" value="economics"> Экономический</label>
+                    <label><input type="radio" name="faculty" value="humanities"> Гуманитарный</label>
+                </div>
+            </div>
+
+            <div>
+                <label for="email">Электронная почта:</label>
+                <!-- maxlength=256 -->
+                <input type="email" id="email" name="email" maxlength="256" placeholder="student@example.com" title="Введите ваш email">
+            </div>
+
+            <div>
+                <label>Интересы:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="interests" value="tech"> Технологии</label>
+                    <label><input type="checkbox" name="interests" value="psychology"> Психология</label>
+                    <label><input type="checkbox" name="interests" value="literature"> Литература</label>
+                    <label><input type="checkbox" name="interests" value="auto"> Авто</label>
+                </div>
+            </div>
+
+            <div>
+                <label for="group">Группа:</label>
+                <!-- required, 4 цифры (паттерн) -->
+                <input type="text" id="group" name="group" maxlength="4" 
+                       pattern="\d{4}" 
+                       title="Только цифры, 4 символа (например, 1234)" 
+                       placeholder="1234" required>
+                <div class="hint">Только цифры, 4 символа (например, 1234)</div>
+            </div>
+        </div>
+
+        <!-- ПРАВАЯ КОЛОНКА -->
+        <div class="column">
+            <h2>Информация о сдаче</h2>
+
+            <div>
+                <label for="subject">Предмет для сдачи:</label>
+                <!-- Выпадающий список, обязательное поле -->
+                <select id="subject" name="subject" required title="Выберите предмет">
+                    <option value="" disabled selected>Выберите предмет...</option>
+                    <option value="web">Веб-технологии</option>
+                    <option value="math">Высшая математика</option>
+                    <option value="programming">Программирование</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="teacher">Преподаватель:</label>
+                <!-- maxlength=256, pattern[cite: 1] -->
+                <input type="text" id="teacher" name="teacher" maxlength="256" 
+                       pattern="[А-ЯЁ][а-яё]+\s[А-ЯЁ][а-яё]+\s[А-ЯЁ][а-яё]+" 
+                       title="Введите три слова на кириллице: Фамилия Имя Отчество" 
+                       placeholder="Иванов Иван Иванович">
+            </div>
+
+            <div>
+                <label for="exam_date">Дата сдачи:</label>
+                <input type="date" id="exam_date" name="exam_date" title="Выберите дату">
+            </div>
+
+            <div>
+                <label>Форма сдачи:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="format" value="offline" checked> Очная</label>
+                    <label><input type="radio" name="format" value="online"> Дистанционная</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Кнопка по центру[cite: 1] -->
+        <div class="submit-container">
+            <button type="submit">Записаться</button>
+        </div>
+
+    </form>
+
+</body>
+</html>
