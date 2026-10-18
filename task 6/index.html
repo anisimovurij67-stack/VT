@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Таймер</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="clock-card">
+    <span class="clock-label">ТЕКУЩЕЕ ВРЕМЯ</span>
+    <div id="currentTime" class="time-display">00:00:00</div>
+    <button id="openModalBtn" class="btn btn-blue">Установить таймер</button>
+    <div id="countdownBox" class="countdown-display hidden">00:00:00</div>
+  </main>
+  <div id="modalOverlay" class="modal-overlay hidden">
+    <div class="modal-content">
+      <button id="closeModalBtn" class="modal-close" aria-label="Закрыть">&times;</button>
+      <h2 class="modal-title">УСТАНОВИТЬ ТАЙМЕР</h2>
+      
+      <form id="timerForm" onsubmit="return false;">
+        <label for="secondsInput" class="modal-label">Количество секунд</label>
+        <input 
+          type="text" 
+          id="secondsInput" 
+          placeholder="60" 
+          autocomplete="off"
+        >
+        <button id="startBtn" type="button" class="btn btn-green">СТАРТ</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
