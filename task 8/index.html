@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание 8 . С.</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header-container">
+    <div class="page-title">
+      <span class="icon">📈</span>
+      <h1>Котировки Мосбиржи</h1>
+    </div>
+  </div>
+
+  <div class="dashboard-grid">
+      <aside class="sidebar">
+      <div class="sidebar-title">Компании</div>
+      <div id="companyButtons" class="company-list">
+      </div>
+    </aside>
+
+    <main class="chart-section">
+      <div class="chart-header">
+        <h2 id="chartTitle">Загрузка данных...</h2>
+        <span id="dateRange" class="date-range"></span>
+      </div>
+      <div class="chart-wrapper">
+        <canvas id="stockChart"></canvas>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
