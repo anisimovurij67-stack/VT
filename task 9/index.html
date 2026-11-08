@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои задачи</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <h1>📋 Мои задачи</h1>
+        
+        <!-- Форма добавления -->
+        <form id="task-form" class="task-form">
+            <input type="text" id="task-title" placeholder="Название задачи" maxlength="100" required>
+            <input type="date" id="task-date" required>
+            <button type="submit" class="btn-add">Добавить</button>
+        </form>
+
+        <!-- Фильтр -->
+        <div class="filter-container">
+            <label for="filter">Фильтр по статусу:</label>
+            <select id="filter">
+                <option value="all">Все</option>
+                <option value="todo">В работе</option>
+                <option value="done">Выполнено</option>
+                <option value="postponed">Отложено</option>
+            </select>
+        </div>
+
+        <!-- Список задач -->
+        <div id="task-list" class="task-list"></div>
+
+        <!-- Статистика -->
+        <div id="summary" class="summary"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
